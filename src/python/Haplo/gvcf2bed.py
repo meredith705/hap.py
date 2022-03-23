@@ -31,10 +31,10 @@ def gvcf2bed(vcf,
 
     tf = tempfile.NamedTemporaryFile(dir=scratch_prefix, suffix=".bed")
     tf.close()
-#     cmdline = "gvcf2bed %s -r %s -o %s" % (pipes.quote(vcf), pipes.quote(ref), tf.name)
-#     if regions:
-#         cmdline += " -T %s" % pipes.quote(regions)
-    cmdline = "gvcf2bed -I %s -O %s" % (pipes.quote(vcf), tf.name)
+    cmdline = "gvcf2bed %s -r %s -o %s" % (pipes.quote(vcf), pipes.quote(ref), tf.name)
+    if regions:
+        cmdline += " -T %s" % pipes.quote(regions)
+#     cmdline = "gvcf2bed -I %s -O %s" % (pipes.quote(vcf), tf.name)
     logging.info("Running gvcf2bed: '%s'" % cmdline)
     #subprocess.check_call(cmdline, shell=True)
     subprocess.check_output(cmdline, stderr=subprocess.STDOUT, shell=True)
