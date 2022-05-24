@@ -45,6 +45,12 @@ def gvcf2bed(vcf,
         subprocess.check_output(cmdline, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as e:
         print(e.output)
+        with open(pipes.quote(vcf)) as v:
+          for l in v:
+            print(l.replace("\n",""))
+        with open(tf.name) as v:
+          for l in v:
+            print(l.replace("\n",""))
         quit()
     return tf.name
 
